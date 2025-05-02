@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 800px;
             margin: auto;
@@ -20,159 +22,174 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
-        .header, .section-title {
-            color: #008080; /* Deep teal for headers and titles */
+
+        .header,
+        .section-title {
+            color: #008080;
         }
+
         .header h1 {
             font-size: 2.4em;
             margin: 0;
             text-align: center;
         }
+
         .header p {
             font-size: 1.2em;
             color: #555;
             text-align: center;
         }
+
         .contact-info {
             text-align: center;
             color: #666;
             margin-bottom: 20px;
         }
+
         .contact-info a {
-            color: #008080; /* Teal for links */
+            color: #008080;
             text-decoration: none;
         }
+
         .section-title {
             font-size: 1.5em;
-            border-bottom: 2px solid #008080; /* Teal border */
+            border-bottom: 2px solid #008080;
             padding-bottom: 4px;
             margin-top: 25px;
         }
-        .section p, li{
+
+        .section p,
+        li {
             text-align: justify;
         }
+
         ul {
             list-style-type: none;
             padding-left: 0;
         }
+
         li:before {
             content: "• ";
             color: #008080;
         }
+
         .job-title {
             font-weight: bold;
             font-size: 1.1em;
             margin-top: 0.5em;
         }
+
         .project-title {
             font-weight: bold;
             color: #333;
         }
     </style>
 </head>
+
 <body>
-
-<div class="container">
-    <div class="header">
-        <h1>Tayyab Mushtaq</h1>
-        <p>Web Application Developer</p>
+    <div class="container">
+        <div class="header">
+            <h1>Tayyab Mushtaq</h1>
+            <p>Web Application Developer</p>
+        </div>
+        <div class="contact-info">
+            📧 <a href="mailto:tayyabmushtaq15@gmail.com">tayyabmushtaq15@gmail.com</a> |
+            📞 +92 341 4536627 |
+            📍 Islamabad, Pakistan |
+            <a href="https://www.linkedin.com/in/tayyabmushtaq15" target="_blank">LinkedIn Profile</a>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p>Dynamic and detail-oriented Web Application Developer with over 2 years of experience designing,
+                building, and optimizing responsive, scalable web applications using HTML5, CSS3, JavaScript, ReactJS,
+                and NodeJS. Adept at creating user-centric solutions, integrating RESTful APIs, and enhancing
+                application performance. Seeking to drive innovation and deliver high-quality software within a
+                growth-focused organization.</p>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Skills</h2>
+            <ul>
+                <li><strong>Programming:</strong> JavaScript, Python</li>
+                <li><strong>Frontend Technologies:</strong> ReactJS, NextJS, HTML5, CSS3</li>
+                <li><strong>Databases:</strong> PostgreSQL, MongoDB</li>
+                <li><strong>Tools:</strong> Git, Postman, Visual Studio Code, Bitbucket, Jira</li>
+                <li><strong>Methodologies:</strong> Agile Development, SCRUM</li>
+                <li><strong>Soft Skills:</strong> Problem Solving, Communication, Time Management, Team Collaboration
+                </li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="job-title">Associate Frontend Developer</p>
+            <p>31 Green | Hybrid | Islamabad, Pakistan | <em>March 2023 – Present</em></p>
+            <ul>
+                <li>Developed and deployed 2+ responsive web applications using ReactJS and NodeJS.</li>
+                <li>Integrated RESTful APIs and improved web app load times.</li>
+                <li>Designed dynamic user interfaces utilizing React Hooks and Redux for state management.</li>
+                <li>Collaborated with cross-functional teams including backend developers and UI/UX designers to deliver
+                    seamless and scalable web solutions.</li>
+            </ul>
+            <p class="job-title">IT Support</p>
+            <p>Special Branch Punjab | Lahore & Rawalpindi, Pakistan | <em>November 2017 – February 2023</em></p>
+            <ul>
+                <li>Provided technical support services, troubleshooting hardware, software, and network issues across
+                    multiple offices.</li>
+                <li>Assisted in web application maintenance, gaining early exposure to web development frameworks.</li>
+                <li>Documented troubleshooting procedures, reducing support response time by 20%.</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <p><strong>Bachelor of Science in Computer Science</strong></p>
+            <p>University of Sargodha | Graduated: 2018</p>
+            <p><strong>Intermediate (FSc Pre-Engineering)</strong></p>
+            <p>Punjab College | Graduated: 2013</p>
+            <p><strong>Matriculation (Science)</strong></p>
+            <p>Govt High School Ghang SKP | Graduated: 2011</p>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Certifications</h2>
+            <ul>
+                <li>AWS Certified Solutions Architect - Professional (SAP-C02) Cert Prep</li>
+                <li>Next.js: Creating and Hosting a Full-Stack Site</li>
+                <li>React: Software Architecture</li>
+                <li>Introduction to Front-End Development</li>
+                <li>JavaScript Essentials 1</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Projects</h2>
+            <p class="project-title">Aliam – Doctor Appointment Booking Website</p>
+            <p>A static website designed for scheduling doctor appointments. Patients can explore doctor profiles, view
+                specializations, and check affiliations before booking. Built with a focus on clear UI and smooth user
+                experience.</p>
+            <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, ReactJS</p>
+            <p class="project-title">Accrepro Reporting – Integrated Reporting Dashboard</p>
+            <p>Developed an analytical reporting website with robust functionality to store reporting data, upload CSV
+                files, and connect to databases for schema extraction. The platform integrates seamlessly with Power BI,
+                allowing users to configure and display interactive reports directly within the application. Implemented
+                role-based access control (RBAC) and user role management to ensure secure and customized access. This
+                solution empowers users to analyze business statistics effectively and create strategic business plans
+                based on Power BI reports.</p>
+            <p><strong>Tech Stack:</strong> ReactJS, JavaScript, Redux, Ant Design, Power BI</p>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Languages</h2>
+            <ul>
+                <li>English (Fluent)</li>
+                <li>Urdu (Native)</li>
+                <li>Punjabi (Conversational)</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Hobbies</h2>
+            <ul>
+                <li>Cricket</li>
+                <li>Reading Blogs</li>
+                <li>Traveling</li>
+            </ul>
+        </div>
     </div>
-
-    <div class="contact-info">
-        📧 <a href="mailto:muhammadzeeshan1995@gmail.com">tayyabmushtaq15@gmail.com</a> |
-        📞 +923414536627 |
-        📍 Islamabad, Pakistan |
-        <a href="https://www.linkedin.com/in/tayyab-mushtaq-13925a142" target="_blank">LinkedIn Profile</a>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Professional Summary</h2>
-        <p>Experienced Web Application Developer with over 1+ years of designing, developing, and deploying high-quality, secure applications. Skilled React.js developer with a proven track record of creating dynamic and visually stunning web applications. I thrive on turning innovative ideas into scalable, user-friendly solutions.I understand the importance of a seamless user experience. My design skills complement my development expertise, resulting in applications that are not just functional but also aesthetically pleasing.Ready to take your project to the next level? Let's connect and discuss how we can turn your vision into reality!</p>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Core Competencies</h2>
-        <ul>
-            <li><strong>Languages & Libraries:</strong> Html, Css, Javascript, React Js, Redux-Toolkit, Tailwind Css, Bootsrtrap, MaterialUi, Ant d</li>
-            <li><strong>Tools & Platform:</strong> Android Studio, Postman, Jwt, Power Bi</li>
-            <li><strong>APIs & Network Integration:</strong> Firebase Cloud Messaging, Google Email integration</li>
-            <li><strong>Security & Deployment:</strong> Git, Firebase, Versel</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Professional Experience</h2>
-
-        <p class="job-title">Associate Frontend Developer | Hybrid, Full-Time</p>
-        <p>31Green, Islamabad | <em>March 2024 - Present</em></p>
-        <ul>
-            <li>Developing and maintaining React Js Application for diverse clients, delivering high-quality and feature-rich web application experiences.</li>
-            <li>Collaborating with global teams to ensure feature alignment and high code standards across all app platforms.</li>
-            <li>Applying best practices in performance optimization, memory management, and UI/UX design to create responsive and user-friendly web and mobile applications.</li>
-            <li>Utilizing CI/CD pipelines to streamline deployment and updates web application.</li>
-        </ul>
-
-        <p class="job-title">Frontend Developer | Part Time </p>
-        <p>Geek Axon Ltd, Islamabad | <em>Jan 2023 - Dec 2023</em></p>
-        <ul>
-            <li>Writing clean and maintainable code in HTML, Css, Javascript and Bootstrape library.</li>
-           <li>Collaborate with the tech team and develope and maintain web application.</li>
-           <li>Applying best practices in performance optimizaiton and UI/UX design to create responsive and user friendly web application.</li>
-        </ul>
-
-        <p class="job-title">IT H/W & Software Technician | Full Time</p>
-        <p>Special Branch Punjab, Lahore & Rawalpindi Regions | <em>2017 - 2023</em></p>
-        <ul>
-            <li>Performing Duties in the Speciel Branch Punjab Govt of Pakistan's Provincial Department.</li>
-            <li>Played role in the IT Department of the Special Branch Rawalpindi from 2018 to Jul 2023 and Lahore Regional Office from Jul 2023 to Dec 2024</li>
-            <li>Troubleshooting Network Administration. Purchase and Install Office Equipment.</li>
-            <li>Contributed to the field staff and Cricket Matches security duties during the PSL and Pak vs Aus and other teams visit in Rawalpindi Cricket Stadium</li>
-        </ul>
-
-        <p class="job-title">IT Technician | Full Time</p>
-        <p>KSS Engineering (Pvt) Ltd, Lahore | <em>2013 - 2014</em></p>
-        <ul>
-            <li>Job Duty to maintain office IT infrastructure, installation and updating of Software’s and Hardware.</li>
-            <li>Troubleshooting Network Administration. Purchase and Install Office Equipment.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Project</h2>
-
-        <p class="project-title">Analytical Report System</p>
-        <p>A comprehensive Web application developed entirely in React Js, allowing users to View Reporting Dashboard that can be create by Csv/database imported files in Power Bi through the Application. In application you can create schemas of the files and upload the updated files which interact with the power bi and show you the updated report view in the dashboard</p>
-        <ul>
-            <li>Developed an analytical reporting website with robust functionality to store reporting data, upload CSV files, and connect to databases for schema extraction. The platform integrates seamlessly with Power BI, allowing users to configure and display interactive reports directly within the application. Additionally, I implemented role-based access control (RBAC) and user role management, ensuring secure and customized access to features and data. This solution empowers users to analyze business statistics effectively, derive actionable insights, and create strategic business plans based on the visualized data from Power BI reports.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Education</h2>
-        <p><strong>Bachelor of Science in Computer Science</strong></p>
-        <p>University of Sargodha, Lahore | <em>2014 - 2018</em></p>
-
-        <p><strong>Intermediate FSC Pre Engineering</strong></p>
-        <p>Punjab Group of Colleges, Sheikhupura Campus | <em>2011 - 2013</em></p>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Languages</h2>
-        <ul>
-            <li>English: Professional proficiency</li>
-            <li>Urdu: Native</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Interests</h2>
-        <ul>
-            <li>Technology Trends</li>
-            <li>AI</li>
-            <li>Travel</li>
-        </ul>
-    </div>
-</div>
-
 </body>
+
 </html>
