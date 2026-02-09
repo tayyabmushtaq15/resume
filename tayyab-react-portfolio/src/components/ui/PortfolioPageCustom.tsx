@@ -19,9 +19,9 @@ const tayyabPortfolioData: PortfolioPageProps = {
     },
   },
   hero: {
-    titleLine1: 'Full Stack Engineer &',
-    titleLine2Gradient: 'Technical Lead',
-    subtitle: 'I\'m a passionate Full Stack Engineer and Technical Lead with over 3 years of experience building and scaling modern web applications. I\'ve led cross-functional teams, designed system architectures, and delivered high-quality solutions using technologies like Next.js, React.js, TypeScript, Node.js, and Express.js. My work focuses on creating fast, reliable, and user friendly products while keeping performance, security, and scalability in mind. I enjoy solving complex problems, integrating tools like Stripe, MSD, and ZOHO to enhance user experience, and working in agile environments where collaboration and innovation thrive.',
+    titleLine1: 'Full Stack Engineer',
+    titleLine2Gradient: '',
+    subtitle: 'I\'m a passionate Full Stack Engineer with over 3 years of experience building and scaling modern web applications. I\'ve led cross-functional teams, designed system architectures, and delivered high-quality solutions using technologies like Next.js, React.js, TypeScript, Node.js, and Express.js. My work focuses on creating fast, reliable, and user friendly products while keeping performance, security, and scalability in mind. I enjoy solving complex problems, integrating tools like Stripe, MSD, and ZOHO to enhance user experience, and working in agile environments where collaboration and innovation thrive.',
   },
   ctaButtons: {
     primary: {

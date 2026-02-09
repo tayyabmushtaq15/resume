@@ -179,13 +179,13 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
     <div className="bg-background text-foreground geist-font min-h-screen transition-colors duration-300">
       {showAnimatedBackground && <AuroraBackground />}
       <div className="relative">
-        <nav className="w-full px-6 py-4 bg-background/80 backdrop-blur-sm">
+        <nav className="fixed top-0 left-0 right-0 w-full px-6 py-4 bg-background/80 backdrop-blur-sm z-50 border-b opacity-70">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <Link to="/" className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity">
                     <div className="w-8 h-8 rounded-lg bg-border backdrop-blur-md border border-border flex items-center justify-center">
                         <span className="geist-font text-sm font-bold text-foreground">{logo?.initials}</span>
                     </div>
-                    <span className="geist-font text-lg font-medium text-foreground">{logo?.name}</span>
+                    <span className="geist-font text-lg font-medium text-foreground">My Portfolio</span>
                 </Link>
                 <div className="hidden md:flex items-center space-x-8">
                     {navLinks?.map(link => (
@@ -213,21 +213,41 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
                 </div>
             </div>
         </nav>
-        <div className="divider" />
+        <div className="h-16" /> {/* Spacer for fixed nav */}
         <main id="about" className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-20">
-            <div className="max-w-6xl mx-auto text-center">
-                <div className="mb-8 float-animation">
-                    <h1 className="md:text-6xl lg:text-7xl leading-[1.1] geist-font text-5xl font-light text-foreground tracking-tight mb-4">
-                        {hero?.titleLine1}
-                        <span className="gradient-text block tracking-tight">{hero?.titleLine2Gradient}</span>
-                    </h1>
-                    <p className="md:text-xl max-w-3xl leading-relaxed inter-font text-lg font-light text-muted-foreground mx-auto">{hero?.subtitle}</p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                    <button onClick={ctaButtons?.primary?.onClick} className="primary-button px-6 py-3 text-foreground rounded-lg font-medium text-sm min-w-[160px]">{ctaButtons?.primary?.label}</button>
-                    <button onClick={ctaButtons?.secondary?.onClick} className="glass-button min-w-[160px] inter-font text-sm font-medium text-foreground rounded-lg px-6 py-3">{ctaButtons?.secondary?.label}</button>
+            <div className="max-w-6xl mx-auto w-full">
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
+                    {/* Left: Circular Image */}
+                    <div className="flex-shrink-0 w-full md:w-auto flex flex-col items-center md:items-start">
+                        <img 
+                            src="/projects/Tayyab-Image.png" 
+                            alt="Tayyab Mushtaq"
+                            className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover object-center shadow-2xl mb-4"
+                            style={{ objectPosition: 'center left' }}
+                        />
+                        <h2 className="md:text-5xl lg:text-6xl leading-[1.1] geist-font text-4xl font-light text-foreground tracking-tight text-center md:text-left mb-2">
+                            {logo?.name}
+                        </h2>
+                        <h3 className="md:text-3xl lg:text-4xl leading-[1.1] geist-font text-2xl font-light text-foreground tracking-tight text-center md:text-left">
+                            {hero?.titleLine1}
+                            {hero?.titleLine2Gradient && (
+                                <span className="gradient-text block tracking-tight">{hero?.titleLine2Gradient}</span>
+                            )}
+                        </h3>
+                    </div>
+                    
+                    {/* Right: Content */}
+                    <div className="flex-1 text-center md:text-left">
+                        <h2 className="text-2xl md:text-3xl font-light text-foreground mb-6 geist-font tracking-tight">Summary</h2>
+                        <p className="md:text-xl lg:text-2xl max-w-3xl leading-relaxed inter-font text-lg font-light text-muted-foreground md:mx-0 mx-auto mb-8">{hero?.subtitle}</p>
+                        <div className="flex flex-col sm:flex-row gap-4 md:justify-start justify-center items-center mb-16">
+                            <button onClick={ctaButtons?.primary?.onClick} className="primary-button px-6 py-3 text-foreground rounded-lg font-medium text-sm min-w-[160px]">{ctaButtons?.primary?.label}</button>
+                            <button onClick={ctaButtons?.secondary?.onClick} className="glass-button min-w-[160px] inter-font text-sm font-medium text-foreground rounded-lg px-6 py-3">{ctaButtons?.secondary?.label}</button>
+                        </div>
+                    </div>
                 </div>
                 <div className="divider mb-16" />
+                <h2 className="text-3xl md:text-4xl font-light text-foreground mb-8 text-center geist-font">Projects</h2>
                 <div id="projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
                     {projects?.map((project, index) => {
                       const imageSrc = project?.imageContent ? extractImageSrc(project.imageContent) : null;
