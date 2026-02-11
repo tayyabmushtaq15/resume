@@ -17,7 +17,7 @@ export const PortfolioNavigation: React.FC<PortfolioNavigationProps> = ({
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 w-full px-6 py-4 bg-background/80 backdrop-blur-sm z-50 border-b opacity-70">
+    <nav className="fixed top-0 left-0 right-0 w-full px-6 py-4 bg-background/110 backdrop-blur-md z-50 border-b">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity">
           <div className="w-8 h-8 rounded-lg bg-border backdrop-blur-md border border-border flex items-center justify-center">
