@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Certifications() {
+const Certifications: React.FC = () => {
   return (
     <section className="my-8">
       <h2 className="text-2xl font-semibold text-teal-700 border-b-2 border-teal-700 pb-1">Certifications</h2>
@@ -13,6 +13,7 @@ function Certifications() {
       </ul>
     </section>
   );
-}
+};
 
 export default Certifications;
+

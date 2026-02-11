@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Experience() {
+const Experience: React.FC = () => {
   return (
     <section className="my-8">
       <h2 className="text-2xl font-semibold text-teal-700 border-b-2 border-teal-700 pb-1">Professional Experience</h2>
@@ -25,6 +25,7 @@ function Experience() {
       </div>
     </section>
   );
-}
+};
 
 export default Experience;
+

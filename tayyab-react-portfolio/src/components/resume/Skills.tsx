@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Skills() {
+const Skills: React.FC = () => {
   return (
     <section className="my-8">
       <h2 className="text-2xl font-semibold text-teal-700 border-b-2 border-teal-700 pb-1">Skills</h2>
@@ -14,6 +14,7 @@ function Skills() {
       </ul>
     </section>
   );
-}
+};
 
 export default Skills;
+

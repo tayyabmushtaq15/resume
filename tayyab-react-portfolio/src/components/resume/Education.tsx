@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Education() {
+const Education: React.FC = () => {
   return (
     <section className="my-8">
       <h2 className="text-2xl font-semibold text-teal-700 border-b-2 border-teal-700 pb-1">Education</h2>
@@ -10,6 +10,7 @@ function Education() {
       </div>
     </section>
   );
-}
+};
 
 export default Education;
+

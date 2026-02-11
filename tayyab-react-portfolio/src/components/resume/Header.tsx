@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <header className="text-center py-8 px-4 bg-gray-100">
       <h1 className="text-4xl font-bold text-teal-700">Tayyab Mushtaq</h1>
@@ -18,6 +18,7 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export default Header;
+
