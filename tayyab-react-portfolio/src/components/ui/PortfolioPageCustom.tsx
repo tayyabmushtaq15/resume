@@ -58,23 +58,21 @@ const tayyabPortfolioData: PortfolioPageProps = {
       title: 'LEOS Development Dashboard',
       description: 'Built and maintained an internal platform designed for C panel personnel to manage and monitor company operations efficiently. Implemented RESTful APIs and database integrations to streamline data flow between client and admin systems. Collaborated with cross-functional teams to ensure seamless deployment, security, and scalability.',
       tags: ['React', 'Next.js', 'RESTful APIs', 'Database Integration'],
-      imageContent: (
-        <img 
-          src="/projects/leos-dashboard-thumbnail.jpg" 
-          alt="LEOS Development Dashboard" 
-          className="w-full h-full object-cover rounded-xl"
-          onError={(e) => {
-            // Fallback if image doesn't exist yet
-            e.currentTarget.style.display = 'none';
-          }}
-        />
-      ),
+      images: [
+        '/projects/leos-dashboard-thumbnail.jpg',
+        '/projects/leos-dashboard-1.jpg',
+        '/projects/leos-dashboard-2.jpg'
+      ],
     },
     {
       title: 'Caremetrix – NHS-Compliant Health Analytics Platform',
       description: 'Developed interactive dashboards for practice data analytics. Applied caching and optimization techniques to improve performance by 30%. Contributed to the development of a healthcare analytics platform with real-time data insights.',
       tags: ['React.js', 'Data Analytics', 'Performance Optimization', 'Healthcare'],
-      imageContent: null, // Image will be added later
+      images: [
+        '/projects/caremetrix-thumbnail.jpg',
+        '/projects/caremetrix-1.jpg',
+        '/projects/caremetrix-2.jpg'
+      ],
     },
     {
       title: 'Accrepro Analytical Reporting Dashboard',

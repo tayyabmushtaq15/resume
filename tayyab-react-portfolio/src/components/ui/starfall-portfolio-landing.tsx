@@ -5,7 +5,7 @@ import { useTheme } from './ThemeProvider';
 
 // --- TYPE DEFINITIONS FOR PROPS ---
 interface NavLink { label: string; href: string; }
-interface Project { title: string; description: string; tags: string[]; imageContent?: React.ReactNode; }
+interface Project { title: string; description: string; tags: string[]; imageContent?: React.ReactNode; images?: string[]; }
 interface Stat { value: string; label: string; }
 
 export interface PortfolioPageProps {
@@ -74,23 +74,128 @@ const defaultData: PortfolioPageProps = {
   stats: [ { value: '50+', label: 'Projects Completed' }, { value: '5+', label: 'Years Experience' }, { value: '15+', label: 'Happy Clients' }, ],
 };
 
+// --- IMAGE SLIDER COMPONENT ---
+interface ImageSliderProps {
+  images: string[];
+  currentIndex: number;
+  onIndexChange: (index: number) => void;
+  alt: string;
+  className?: string;
+  showControls?: boolean;
+}
+
+const ImageSlider: React.FC<ImageSliderProps> = ({ 
+  images, 
+  currentIndex, 
+  onIndexChange, 
+  alt, 
+  className = '',
+  showControls = true 
+}) => {
+  const handlePrevious = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (currentIndex > 0) {
+      onIndexChange(currentIndex - 1);
+    }
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (currentIndex < images.length - 1) {
+      onIndexChange(currentIndex + 1);
+    }
+  };
+
+  const canGoPrevious = currentIndex > 0;
+  const canGoNext = currentIndex < images.length - 1;
+
+  return (
+    <div className={`relative ${className}`}>
+      <img
+        src={images[currentIndex]}
+        alt={`${alt} - Image ${currentIndex + 1} of ${images.length}`}
+        className="w-full h-full object-cover rounded-xl transition-opacity duration-300"
+      />
+      {showControls && images.length > 1 && (
+        <>
+          <button
+            onClick={handlePrevious}
+            disabled={!canGoPrevious}
+            className={`slider-nav-button slider-nav-button-left ${!canGoPrevious ? 'opacity-40 cursor-not-allowed' : ''}`}
+            aria-label="Previous image"
+            type="button"
+          >
+            <span className="slider-arrow">‹</span>
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={!canGoNext}
+            className={`slider-nav-button slider-nav-button-right ${!canGoNext ? 'opacity-40 cursor-not-allowed' : ''}`}
+            aria-label="Next image"
+            type="button"
+          >
+            <span className="slider-arrow">›</span>
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
+
 // --- IMAGE MODAL COMPONENT ---
-const ImageModal: React.FC<{ imageSrc: string; alt: string; isOpen: boolean; onClose: () => void }> = ({ imageSrc, alt, isOpen, onClose }) => {
+const ImageModal: React.FC<{ imageSrc: string; alt: string; isOpen: boolean; onClose: () => void; images?: string[]; initialIndex?: number }> = ({ imageSrc, alt, isOpen, onClose, images, initialIndex = 0 }) => {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const hasMultipleImages = images && images.length > 1;
+  const displayImages = images || [imageSrc];
+  const currentImage = displayImages[currentIndex] || imageSrc;
+
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      setCurrentIndex(initialIndex);
+    }
+  }, [isOpen, initialIndex]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      } else if (hasMultipleImages) {
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+        } else if (e.key === 'ArrowRight' && currentIndex < displayImages.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+        }
+      }
+    };
+    
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
     }
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, hasMultipleImages, currentIndex, displayImages.length]);
 
   if (!isOpen) return null;
+
+  const handlePrevious = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (currentIndex < displayImages.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const canGoPrevious = currentIndex > 0;
+  const canGoNext = currentIndex < displayImages.length - 1;
 
   return (
     <div 
@@ -106,12 +211,39 @@ const ImageModal: React.FC<{ imageSrc: string; alt: string; isOpen: boolean; onC
         >
           <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>×</span>
         </button>
+        {hasMultipleImages && (
+          <>
+            <button
+              onClick={handlePrevious}
+              disabled={!canGoPrevious}
+              className={`absolute left-4 z-10 w-12 h-12 rounded-full bg-blue-500/80 hover:bg-blue-500/90 backdrop-blur-md border border-blue-400/60 flex items-center justify-center text-white text-2xl font-light transition-all hover:scale-110 shadow-lg ${!canGoPrevious ? 'opacity-40 cursor-not-allowed' : ''}`}
+              aria-label="Previous image"
+              type="button"
+            >
+              <span className="slider-arrow">‹</span>
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={!canGoNext}
+              className={`absolute right-4 z-10 w-12 h-12 rounded-full bg-blue-500/80 hover:bg-blue-500/90 backdrop-blur-md border border-blue-400/60 flex items-center justify-center text-white text-2xl font-light transition-all hover:scale-110 shadow-lg ${!canGoNext ? 'opacity-40 cursor-not-allowed' : ''}`}
+              aria-label="Next image"
+              type="button"
+            >
+              <span className="slider-arrow">›</span>
+            </button>
+          </>
+        )}
         <img
-          src={imageSrc}
-          alt={alt}
-          className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+          src={currentImage}
+          alt={`${alt} - Image ${currentIndex + 1} of ${displayImages.length}`}
+          className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transition-opacity duration-300"
           onClick={(e) => e.stopPropagation()}
         />
+        {hasMultipleImages && (
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm">
+            {currentIndex + 1} / {displayImages.length}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -128,7 +260,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
   stats = defaultData.stats,
   showAnimatedBackground = true,
 }) => {
-  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; images?: string[]; initialIndex?: number } | null>(null);
   const { theme, toggleTheme } = useTheme();
 
   const extractImageSrc = useCallback((imageContent: React.ReactNode): string | null => {
@@ -250,17 +382,53 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
                 <h2 className="text-3xl md:text-4xl font-light text-foreground mb-8 text-center geist-font">Projects</h2>
                 <div id="projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
                     {projects?.map((project, index) => {
+                      const hasMultipleImages = project?.images && project.images.length > 0;
                       const imageSrc = project?.imageContent ? extractImageSrc(project.imageContent) : null;
+                      const firstImageSrc = hasMultipleImages && project.images ? project.images[0] : null;
+                      
                       const handleImageClick = (e: React.MouseEvent) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        if (imageSrc) {
+                        if (hasMultipleImages && project.images) {
+                          setSelectedImage({ 
+                            src: project.images[0], 
+                            alt: project.title,
+                            images: project.images,
+                            initialIndex: 0
+                          });
+                        } else if (imageSrc) {
                           setSelectedImage({ src: imageSrc, alt: project.title });
                         }
                       };
+
                       return (
                         <div key={index} className="glass-card rounded-2xl p-6 text-left relative">
-                          {imageSrc ? (
+                          {hasMultipleImages && firstImageSrc ? (
+                            <div 
+                              className="project-image rounded-xl h-32 mb-4 flex items-center justify-center overflow-hidden relative cursor-pointer"
+                              onClick={handleImageClick}
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => {
+                                if ((e.key === 'Enter' || e.key === ' ')) {
+                                  e.preventDefault();
+                                  setSelectedImage({ 
+                                    src: project.images![0], 
+                                    alt: project.title,
+                                    images: project.images,
+                                    initialIndex: 0
+                                  });
+                                }
+                              }}
+                              style={{ pointerEvents: 'auto' }}
+                            >
+                              <img
+                                src={firstImageSrc}
+                                alt={project.title}
+                                className="w-full h-full object-cover rounded-xl"
+                              />
+                            </div>
+                          ) : imageSrc ? (
                             <div 
                               className="project-image rounded-xl h-32 mb-4 flex items-center justify-center overflow-hidden relative cursor-pointer"
                               onClick={handleImageClick}
@@ -300,6 +468,8 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
                     alt={selectedImage.alt}
                     isOpen={!!selectedImage}
                     onClose={() => setSelectedImage(null)}
+                    images={selectedImage.images}
+                    initialIndex={selectedImage.initialIndex}
                   />
                 )}
             </div>
