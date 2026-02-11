@@ -1,6 +1,6 @@
 # Tayyab Mushtaq - Portfolio Website
 
-A modern, responsive portfolio website showcasing my work, experience, and skills as a Full Stack Engineer and Technical Lead. Built with React, TypeScript, and Tailwind CSS, featuring a beautiful animated background, dark/light theme toggle, and smooth user interactions.
+A modern, responsive portfolio website showcasing my work, experience, and skills as a Full Stack Engineer. Built with React, TypeScript, and Tailwind CSS, featuring a beautiful animated background, dark/light theme toggle, and smooth user interactions.
 
 ## 🚀 Features
 
@@ -8,7 +8,7 @@ A modern, responsive portfolio website showcasing my work, experience, and skill
 - **Animated Background**: Three.js-powered aurora background effect
 - **Theme Toggle**: Switch between light and dark themes with persistent preference
 - **Responsive Design**: Fully responsive layout that works on all devices
-- **Project Showcase**: Interactive project cards with image modal/lightbox
+- **Project Showcase**: Interactive project cards with image modal/lightbox and multi-image slider
 - **Work Experience**: Detailed work history with achievements
 - **Skills Carousel**: Auto-scrolling skills carousel with technology logos
 - **Smooth Scrolling**: Smooth navigation between sections
@@ -64,26 +64,54 @@ tayyab-react-portfolio/
 │       ├── grow-thumbnail.jpg
 │       └── Tayyab-Mushtaq-Resume.pdf
 ├── src/
+│   ├── app/
+│   │   └── App.tsx       # Main app component with routing
+│   ├── pages/
+│   │   ├── PortfolioPage.tsx    # Main portfolio page
+│   │   └── ResumePage.tsx        # Resume page
 │   ├── components/
-│   │   ├── ui/
-│   │   │   ├── PortfolioPageCustom.tsx    # Main portfolio component with custom data
-│   │   │   ├── starfall-portfolio-landing.tsx  # Reusable portfolio component
-│   │   │   └── ThemeProvider.tsx          # Theme context provider
-│   │   └── ...                            # Other components
-│   ├── App.jsx                            # Main app component with routing
-│   ├── index.css                          # Global styles and theme variables
-│   └── main.jsx                           # Entry point
+│   │   ├── portfolio/
+│   │   │   ├── PortfolioLayout.tsx      # Main portfolio layout
+│   │   │   ├── PortfolioNavigation.tsx # Navigation bar
+│   │   │   ├── sections/
+│   │   │   │   ├── AboutSection.tsx     # About/Hero section
+│   │   │   │   ├── ProjectsSection.tsx  # Projects showcase
+│   │   │   │   ├── ExperienceSection.tsx # Work experience
+│   │   │   │   ├── SkillsSection.tsx    # Technical skills
+│   │   │   │   └── StatsSection.tsx     # Statistics
+│   │   │   ├── AuroraBackground.tsx     # Three.js background
+│   │   │   ├── ImageModal.tsx           # Image modal/lightbox
+│   │   │   └── ImageSlider.tsx          # Image slider component
+│   │   ├── resume/                      # Resume page components
+│   │   │   ├── Header.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   └── ...
+│   │   └── shared/
+│   │       └── ThemeProvider.tsx        # Theme context provider
+│   ├── hooks/
+│   │   └── useTheme.ts                  # Theme hook
+│   ├── types/
+│   │   ├── portfolio.types.ts           # TypeScript type definitions
+│   │   └── index.ts                     # Type re-exports
+│   ├── config/
+│   │   └── portfolio.config.tsx         # Portfolio data configuration
+│   ├── utils/
+│   │   └── imageUtils.ts                # Image utility functions
+│   ├── styles/
+│   │   └── index.css                    # Global styles and theme variables
+│   └── main.tsx                         # Entry point
 ├── package.json
-├── tailwind.config.js                     # Tailwind CSS configuration
-├── tsconfig.json                          # TypeScript configuration
-└── vite.config.js                         # Vite configuration
+├── tailwind.config.js                   # Tailwind CSS configuration
+├── tsconfig.json                        # TypeScript configuration
+└── vite.config.js                       # Vite configuration
 ```
 
 ## 🎨 Customization
 
 ### Updating Personal Information
 
-Edit `src/components/ui/PortfolioPageCustom.tsx` to update:
+Edit `src/config/portfolio.config.tsx` to update:
 - Personal details (name, title, bio)
 - Work experience
 - Projects
@@ -93,100 +121,17 @@ Edit `src/components/ui/PortfolioPageCustom.tsx` to update:
 
 ### Theme Customization
 
-Themes are defined in `src/index.css`:
+Themes are defined in `src/styles/index.css`:
 - **Dark Theme** (default): Defined in `:root` and `[data-theme="dark"]`
 - **Light Theme**: Defined in `[data-theme="light"]`
 
 To customize colors, modify the CSS variables:
 ```css
---background: 220 20% 8%;        /* Background color */
---foreground: 210 40% 98%;       /* Text color */
---primary: 217 91% 60%;           /* Primary accent color */
---card: 220 25% 12%;             /* Card background */
---border: 220 25% 20%;           /* Border color */
+--background: 220 20% 8%;        
+--foreground: 210 40% 98%;       
+--primary: 217 91% 60%;          
+--card: 220 25% 12%;            
 ```
-
-### Adding Projects
-
-Add new projects in `PortfolioPageCustom.tsx`:
-```typescript
-{
-  title: 'Project Name',
-  description: 'Project description',
-  tags: ['React', 'TypeScript', 'Node.js'],
-  imageContent: (
-    <img 
-      src="/projects/project-thumbnail.jpg" 
-      alt="Project Name"
-      className="w-full h-full object-cover rounded-xl"
-    />
-  ),
-}
-```
-
-### Adding Skills
-
-Update the skills array in `PortfolioPageCustom.tsx`:
-```typescript
-const skills = [
-  { 
-    name: 'Skill Name', 
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/skill/skill-original.svg' 
-  },
-  // ... more skills
-];
-```
-
-## 🌐 Deployment
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-This creates an optimized production build in the `dist/` directory.
-
-### Deploy to Vercel
-
-1. Install Vercel CLI:
-   ```bash
-   npm i -g vercel
-   ```
-
-2. Deploy:
-   ```bash
-   vercel
-   ```
-
-### Deploy to Netlify
-
-1. Build the project:
-   ```bash
-   npm run build
-   ```
-
-2. Drag and drop the `dist` folder to [Netlify Drop](https://app.netlify.com/drop)
-
-### Deploy to GitHub Pages
-
-1. Install gh-pages:
-   ```bash
-   npm install --save-dev gh-pages
-   ```
-
-2. Add to `package.json`:
-   ```json
-   "scripts": {
-     "predeploy": "npm run build",
-     "deploy": "gh-pages -d dist"
-   }
-   ```
-
-3. Deploy:
-   ```bash
-   npm run deploy
-   ```
 
 ## 📱 Responsive Breakpoints
 
@@ -194,44 +139,27 @@ This creates an optimized production build in the `dist/` directory.
 - **Tablet**: 640px - 1024px
 - **Desktop**: > 1024px
 
-## 🎭 Features in Detail
+## 🔧 Development
 
-### Theme Toggle
-- Click the sun/moon icon in the navigation bar
-- Theme preference is saved in localStorage
-- Smooth transitions between themes
-
-### Project Image Modal
-- Click on any project thumbnail to view full-size image
-- Press `Escape` or click outside to close
-- Smooth fade-in animation
-
-### Skills Carousel
-- Auto-scrolling carousel with technology logos
-- Infinite loop animation
-- Hover effects on skill items
-
-### Smooth Scrolling
-- Navigation links smoothly scroll to sections
-- "View My Work" button scrolls to projects section
-
-## 📧 Contact
-
-- **Email**: [tayyabmushtaq15@gmail.com](mailto:tayyabmushtaq15@gmail.com)
-- **LinkedIn**: [https://www.linkedin.com/in/tayyab-mushtaq-13925a142/]
-- **GitHub**: [https://github.com/tayyabmushtaq15]
+The project uses a well-organized structure with:
+- **Components**: Separated into portfolio, resume, and shared components
+- **Sections**: Each portfolio section is a self-contained component
+- **Types**: Centralized TypeScript type definitions
+- **Config**: All portfolio data in a single configuration file
+- **Utils**: Reusable utility functions
+- **Hooks**: Custom React hooks for shared logic
 
 ## 📄 License
 
 This project is private and proprietary.
 
-## 🙏 Acknowledgments
+## 👤 Author
 
-- Three.js for the animated background
-- Tailwind CSS for utility-first styling
-- React community for excellent documentation and tools
+**Tayyab Mushtaq**
+- Email: tayyabmushtaq15@gmail.com
+- LinkedIn: [tayyabmushtaq15](https://www.linkedin.com/in/tayyabmushtaq15)
+- GitHub: [tayyabmushtaq15](https://github.com/tayyabmushtaq15)
 
 ---
 
-**Built by Tayyab Mushtaq**
-
+Built with using React, TypeScript, and Tailwind CSS
