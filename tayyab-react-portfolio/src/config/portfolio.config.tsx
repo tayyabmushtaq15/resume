@@ -15,7 +15,7 @@ export const portfolioConfig: PortfolioPageProps = {
   resume: {
     label: 'Resume',
     onClick: () => {
-      window.open('/projects/Tayyab-Mushtaq-Resume.pdf', '_blank');
+      window.open('/projects/tayyab-mushtaq-resume-latest.pdf', '_blank');
     },
   },
   hero: {
@@ -38,6 +38,21 @@ export const portfolioConfig: PortfolioPageProps = {
     },
   },
   projects: [
+    {
+      title: 'E-Commerce Solution',
+      description: 'A production-ready clothing e-commerce store built with Next.js 16, TypeScript, Tailwind CSS, Prisma ORM, and PostgreSQL. Features modern UI with shadcn/ui components, email & password authentication with SMTP OTP verification, complete product catalog with variants (size, color), persistent shopping cart with guest/user support, Stripe payments + Cash on Delivery, admin panel for dashboard/products/orders/categories management, full-text search with filters, and order tracking from pending to delivered.',
+      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Stripe', 'SMTP'],
+      images: [
+        '/projects/E-com1.png',
+        '/projects/E-com2.png',
+        '/projects/E-com3.png',
+        '/projects/E-com4.png',
+        '/projects/E-com5.png',
+        '/projects/E-com6.png',
+        '/projects/E-com7.png',
+        '/projects/E-com8.png'
+      ],
+    },
     {
       title: 'Velive – Property Management Platform',
       description: 'Worked as a Full Stack Engineer contributing to a comprehensive property management platform with features like property search, tenant screening, lease and financial management, and maintenance requests. Enhanced performance and user experience through optimized React and Next.js components.',
@@ -97,7 +112,7 @@ export const portfolioConfig: PortfolioPageProps = {
   ],
   stats: [
     { value: '3+', label: 'Years Experience' },
-    { value: '5+', label: 'Key Projects' },
+    { value: '6+', label: 'Key Projects' },
     { value: '5', label: 'Certifications' },
   ],
   showAnimatedBackground: true,
